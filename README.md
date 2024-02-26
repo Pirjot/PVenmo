@@ -11,5 +11,8 @@ These steps will guide you on how to recreate an app just like this!
 1. Install Django and React + NodeJS.
 2. Run the following:
 ```django-admin startproject projectname```.
-3. On the level of manage.py, follow the instructions provided https://rashadansari.medium.com/how-to-serve-react-app-in-django-1c8feebbdef6.
-4. Essentially create the React App using NPM: ```npx create-react-app react_app_example``` and setup the urls/views files to serve the react app.
+3. Follow steps given here: https://medium.com/analytics-vidhya/django-react-integration-37acc304e984
+4. Essentially, choose any structure of files and configure webpack accordingly
+so that it can create a bundle which is then requrested by the client through
+a static request. For Glitch support, you can ensure that all package.json
+files stay in the root of the project.
