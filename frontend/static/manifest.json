@@ -1,6 +1,6 @@
 {
-    "name": "Afterplay.io",
-    "short_name": "Afterplay",
+    "name": "PVenmo",
+    "short_name": "PVenmo",
     "orientation":"any",
     "start_url": "/",
     "display": "standalone",

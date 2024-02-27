@@ -1,2 +1,2 @@
 #!/bin/bash
-(trap 'kill 0' SIGINT; npm run dev & python3 manage.py runserver)
+npm run build && python3 manage.py runserver
