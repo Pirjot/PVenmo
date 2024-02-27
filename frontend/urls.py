@@ -1,6 +1,9 @@
 from django.urls import path
-from .views import indexView  # the view responsible for the frontend
+from .views import *
 
 urlpatterns = [
-    path('', indexView),  # add the view to the url
+    path('', indexView),
+    
+    
+    path('api/route1', route1)
 ]

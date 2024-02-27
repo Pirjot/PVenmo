@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "cd frontend && webpack --mode development --watch --progress",
-    "build": "cd frontend && webpack --mode production"
+    "build": "cd frontend && webpack --mode production --progress"
   },
   "repository": {
     "type": "git",
