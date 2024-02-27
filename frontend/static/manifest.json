@@ -1,0 +1,13 @@
+{
+    "name": "Afterplay.io",
+    "short_name": "Afterplay",
+    "orientation":"any",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#171819",
+    "theme_color": "#171819",
+    "icons": [
+      
+    ]
+
+}

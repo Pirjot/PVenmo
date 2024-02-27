@@ -14,5 +14,10 @@ These steps will guide you on how to recreate an app just like this!
 3. Follow steps given here: https://medium.com/analytics-vidhya/django-react-integration-37acc304e984
 4. Essentially, choose any structure of files and configure webpack accordingly
 so that it can create a bundle which is then requrested by the client through
-a static request. For Glitch support, you can ensure that all package.json
+a static request. For online serving support, you can ensure that all package.json
 files stay in the root of the project.
+5. We can serve everything on REPLIT by remembering to configure settings.py and setting
+the configuration of the replit to have the right port and also adding the site to allowed
+hosts for the configuration.
+
+
