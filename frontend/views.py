@@ -1,4 +1,5 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render
 
 def http_method_list(methods):
@@ -14,9 +15,43 @@ def http_method_list(methods):
 
 # Main Page
 def indexView(request, *args, **kwargs):
-    return render(request, "frontend/index.html") 
+    identity = request.COOKIES.get('clientid')
+    
+    if identity is not None:
+        print("User is signed in!")
+        # Render venmo.html which will make requests using the clientid
+    else:
+        print('User is not signed in')
+    return render(request, "frontend/index.html")
 
 # API Routes
 @http_method_list(["GET"])
 def route1(request, **kwargs):
     return HttpResponse('GET request')
+
+@csrf_exempt
+@http_method_list(["POST"])
+def google(request, **kwargs):
+    client_id = request.POST['credential']
+
+    # Create in Database all default values here
+    from pymongo import MongoClient
+    connection_string = "mongodb+srv://pvenmo:H9Om9My78Rrcq7PP@pvenmo.3v7rs5d.mongodb.net/?retryWrites=true&w=majority&appName=PVenmo"
+
+    client = MongoClient(connection_string)
+    mongo_db = client['sample_medicines']
+    coll = mongo_db["medicinedetails"]
+
+    medicine_1 = {
+        "medicine_id": "RR000123456",
+        "common_name" : "Paracetamol",
+        "scientific_name" : "",
+        "available" : "Y",
+        "category": "fever"
+    }
+
+    # coll.insert_many([medicine_1])
+
+    response = HttpResponseRedirect("/")  
+    response.set_cookie('clientid', client_id) 
+    return response
