@@ -1,3 +1,19 @@
 body {
-    background-color: lightblue
+    margin-top: 0px;
+}
+
+.container {
+    overflow-y: scroll;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+}
+.container::-webkit-scrollbar { /* WebKit */
+    width: 0;
+    height: 0;
+}
+
+/* TODO: Add all the custom fonting from the file and fit accordingly */
+@font-face {
+    font-family: Athletics;
+    src: url("../fonts/Athletics-Medium.otf");
 }

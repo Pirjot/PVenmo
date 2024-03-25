@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "cd frontend && webpack --mode development --watch --progress",
-    "build": "cd frontend && webpack --mode production --progress"
+    "build": "cd frontend && webpack --mode production --progress",
+    "server": "python3 manage.py runserver"
   },
   "repository": {
     "type": "git",

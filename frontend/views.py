@@ -18,10 +18,7 @@ def indexView(request, *args, **kwargs):
     identity = request.COOKIES.get('clientid')
     
     if identity is not None:
-        print("User is signed in!")
-        # Render venmo.html which will make requests using the clientid
-    else:
-        print('User is not signed in')
+        return render(request, "frontend/venmo.html")
     return render(request, "frontend/index.html")
 
 # API Routes
