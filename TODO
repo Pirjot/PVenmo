@@ -1,22 +1,5 @@
 TODO List for PVenmo:
 
-Overall Goal: Seamlessly simulate the reverse engineered version of Venmo on a Phone
+Create the Payment Details page and get this to the T!!
 
-First Part: Setup GET/POST Methods on Django DONE
-Figure out how to allow the frontend to make requests to the actual server
-(Must be on the same port so just add as a separate route)
-
-Second Part: Add Google Sign In Capability on the frontend DONE
-Add a single button to be able to sign into Google (have to register the app to do
-so in Google Cloud as usual and store the user's email as their identity)
-
-Third Part: Using server side database (possibly in already setup sqlite if not
-then maybe MONGO) store the user's venmo page settings DONE
-
-
-
-Fourth Part: Test the capabilities of signing into a Google Account to spit out info on to the screen
-
-Fifth Part: Recreate Venmo UI and fit in the necessary data.
-2-3 Part: Update File structure
-W
+Use the BruinBhangra page for details.

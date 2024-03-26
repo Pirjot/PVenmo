@@ -1,12 +1,11 @@
 import React from "react";
 
-import { useState, useEffect } from "react";
-import { useFetch } from "../hooks/useFetch";
-import { styled } from '@mui/material/styles';
+import { useState } from "react";
 import { TopBar } from "./TopBar";
 import { BottomBar } from "./BottomBar";
 import { Transactions } from "./Transactions";
-import { Box, Unstable_Grid2 as Grid, Slide } from "@mui/material";
+import { PaymentPage } from "./PaymentPage";
+import { Slide } from "@mui/material";
 
 export function VenmoApp(props: {
     name: String
@@ -15,23 +14,11 @@ export function VenmoApp(props: {
     const [come, setCome] = useState(false);
 
     function slide() {
-        console.log("Hello World");
+        console.log("Hello Worl");
         setCome(!come);
     }
 
     let button = <button onClick={slide}>Hello</button>;
-
-    let paymentPage = <div style={{
-        height:"100%",
-        zIndex:"40",
-        width:"100%",
-        backgroundColor: "aqua",
-        // position: "fixed",
-        // top: "0",
-        // left: "0",
-        // transition: "4sec"
-    }}>{button}
-    </div>;
 
     return <><div>
         <TopBar />
@@ -43,10 +30,14 @@ export function VenmoApp(props: {
         position: "fixed",
         top: "0",
         left: "0",
-        height: "500px"
     }}
-    direction="left" in={come} mountOnEnter unmountOnExit>
-        {paymentPage}
+    direction="left" in={come}>
+        <div style ={{
+            position: "fixed",
+            height:"100%",
+            zIndex:"40",
+            width:"100%",
+        }}><PaymentPage /></div>
     </Slide>
 
     </>;
