@@ -1,28 +1,40 @@
 import React from "react";
 
 export function PaymentPage(props : {
-    children?: React.JSX.Element[]
+    children?: React.JSX.Element[],
+    setCome: React.Dispatch<React.SetStateAction<boolean>>
 }) {
     
     return <div style={{
-        position: "fixed",
         height:"100%",
-        zIndex:"40",
         width:"100%",
         backgroundColor: "aqua",
-        padding: "10px"
+        overflowY: "scroll"
     }}>
         <i 
         style = {{
             position: "fixed",
             top: "10px",
-            left: "10px"
+            left: "10px",
+            zIndex: "3"
         }}
-        className="fa-solid fa-chevron-left" />
+        onClick={(evt) => props.setCome(false)}
+        className="fa-solid fa-chevron-left hoverClick" />
 
-        <h3 style={{
-            textAlign: "center"
-        }}>Payment Details</h3>
+        <div style ={{
+            position: "sticky",
+            top: "0px",
+            left: "0px",
+            width: "100%",
+            height: "50px",
+            backgroundColor: "white",
+            paddingTop: "20px",
+            zIndex: "2"
+        }}>
+            <p style ={{
+                textAlign: "center"
+            }}>Payment Details</p>
+        </div>
 
         <div
         style={{
@@ -55,6 +67,10 @@ export function PaymentPage(props : {
         <p>9299488194949</p>
         
         <p>Need Help?</p>
+
+        <div style={{
+            height: "200px"
+        }}></div>
     </div>;
 
 }

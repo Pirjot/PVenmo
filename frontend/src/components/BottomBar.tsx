@@ -20,7 +20,7 @@ export function BottomBar(props : {
     return <div
     className="container"
     style={{
-        position: "sticky",
+        position: "fixed",
         display: "flex",
         padding: "0px",
         height: height,

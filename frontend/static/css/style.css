@@ -4,12 +4,16 @@ body {
 
 .container {
     overflow-y: scroll;
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none; 
+    -ms-overflow-style: none;  
 }
-.container::-webkit-scrollbar { /* WebKit */
+.container::-webkit-scrollbar { 
     width: 0;
     height: 0;
+}
+
+.hoverClick:hover {
+    cursor:pointer
 }
 
 /* TODO: Add all the custom fonting from the file and fit accordingly */

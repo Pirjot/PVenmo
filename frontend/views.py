@@ -1,6 +1,7 @@
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render
+import json
 
 def http_method_list(methods):
     def http_methods_decorator(func):
@@ -22,9 +23,16 @@ def indexView(request, *args, **kwargs):
     return render(request, "frontend/index.html")
 
 # API Routes
-@http_method_list(["GET"])
-def route1(request, **kwargs):
-    return HttpResponse('GET request')
+@csrf_exempt
+@http_method_list(["POST"])
+def login(request, **kwargs):
+    req = json.loads(request.body)
+    
+    client_id = req.get('credential', False)
+
+    response = HttpResponseRedirect("/")  
+    client_id and response.set_cookie('clientid', client_id)
+    return response
 
 @csrf_exempt
 @http_method_list(["POST"])
@@ -32,20 +40,20 @@ def google(request, **kwargs):
     client_id = request.POST['credential']
 
     # Create in Database all default values here
-    from pymongo import MongoClient
-    connection_string = "mongodb+srv://pvenmo:H9Om9My78Rrcq7PP@pvenmo.3v7rs5d.mongodb.net/?retryWrites=true&w=majority&appName=PVenmo"
+    # from pymongo import MongoClient
+    # connection_string = "mongodb+srv://pvenmo:H9Om9My78Rrcq7PP@pvenmo.3v7rs5d.mongodb.net/?retryWrites=true&w=majority&appName=PVenmo"
 
-    client = MongoClient(connection_string)
-    mongo_db = client['sample_medicines']
-    coll = mongo_db["medicinedetails"]
+    # client = MongoClient(connection_string)
+    # mongo_db = client['sample_medicines']
+    # coll = mongo_db["medicinedetails"]
 
-    medicine_1 = {
-        "medicine_id": "RR000123456",
-        "common_name" : "Paracetamol",
-        "scientific_name" : "",
-        "available" : "Y",
-        "category": "fever"
-    }
+    # medicine_1 = {
+    #     "medicine_id": "RR000123456",
+    #     "common_name" : "Paracetamol",
+    #     "scientific_name" : "",
+    #     "available" : "Y",
+    #     "category": "fever"
+    # }
 
     # coll.insert_many([medicine_1])
 

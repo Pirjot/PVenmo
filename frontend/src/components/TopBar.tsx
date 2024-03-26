@@ -10,7 +10,7 @@ export function TopBar(props : {
     style = {{
         whiteSpace: "nowrap",
         height: height,
-        minWidth: "2000px",
+        minWidth: "100px",
         border: "3px solid black"
     }}
     >
@@ -34,6 +34,6 @@ export function TopBar(props : {
     }}
     >
         {...(props.children || [])}
-        {item}
+        {...[item, item, item, item, item]}
     </div>;
 }

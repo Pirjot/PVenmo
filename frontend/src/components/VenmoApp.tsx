@@ -14,32 +14,38 @@ export function VenmoApp(props: {
     const [come, setCome] = useState(false);
 
     function slide() {
-        console.log("Hello Worl");
         setCome(!come);
     }
 
     let button = <button onClick={slide}>Hello</button>;
 
-    return <><div>
+    let mainPage = <div>
         <TopBar />
         <Transactions />
         {button}
+        <div style={{
+            height: "200px"
+        }}></div>
         <BottomBar />
-    </div>
-    <Slide style={{
+    </div>;
+
+    let paymentSlide = <Slide style={{
         position: "fixed",
         top: "0",
         left: "0",
     }}
     direction="left" in={come}>
         <div style ={{
-            position: "fixed",
             height:"100%",
             zIndex:"40",
             width:"100%",
-        }}><PaymentPage /></div>
-    </Slide>
+            overflowX: "clip"
+        }}><PaymentPage setCome={setCome} /></div>
+    </Slide>;
 
+    return <>
+    {come ? null : mainPage}
+    {paymentSlide}
     </>;
 }
 

@@ -1,13 +1,31 @@
 import { Component, useState, useEffect } from "react";
 
-export function useFetch(api: string, deps: Component[] = []) {
+/**
+ * 
+ * NOTE: If any of deps are specially set to null, then we do not
+ * fetch!
+ * @param api 
+ * @param body 
+ * @param deps 
+ * @returns 
+ */
+export function useFetch(api: string, body:RequestInit = undefined, deps: Component[] = []) {
     const [data, setData] = useState(null);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetch(api)
-            .then(response => response.json())
+        for (let dep of deps) {
+            if (dep === null) {
+                return;
+            }
+        }
+        setLoading(true);
+
+        // TODO: Add an Abort controller to get rid of any fetches already in travel
+        // Add an option for not json files
+        fetch(api, body)
+            .then(response => response.redirected ? response : response.json())
             .then(data => {
                 setData(data);
                 setLoading(false);
