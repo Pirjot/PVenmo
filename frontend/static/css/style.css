@@ -199,13 +199,6 @@ body {
     font-weight: 800;
 }
 
-
-@font-face {
-    font-family: 'Venmo';
-    src: url("../fonts/venmo.ttf");
-}
-
-
 /* Custom Icons */
 .private-icon {
     background: url('../images/Private.png');

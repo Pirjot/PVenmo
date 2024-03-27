@@ -74,48 +74,48 @@ export function PaymentPage(props: {
                         objectFit: "cover",
                         borderRadius: "50%"
                     }} />
-                <p style={{ margin: "5px", fontSize: "20px", fontFamily: "Athletics" }}>Bruin Bhangra</p>
+                <p style={{ margin: "5px", fontSize: "20px", fontFamily: "Athletics", fontWeight: "800" }}>Bruin Bhangra</p>
                 <p style={{ margin: "0", fontFamily: "SctoGroteskA" }}>"Pirjot pre-sale"</p>
-                <p style={{ margin: "5px", fontSize: "20px", fontFamily: "Athletics", color: "#c72830" }}>- $8</p>
+                <p style={{ margin: "5px", fontSize: "24px", fontFamily: "Athletics", color: "#c72830" }}>- $8</p>
             </div>
 
             <div style={{
                 paddingLeft: "10px"
             }}>
-                <p style={{ margin: "0", fontFamily: "SctoGroteskA", fontSize: "14px", color: "#2f3033" }}>Social activity</p>
-                <p style={{ marginTop: "5px", fontFamily: "Roboto", whiteSpace: "pre", fontSize: "14px", color: "#888c94", fontWeight: "600" }}>
+                <p style={{ margin: "0", fontFamily: "Roboto", fontSize: "14px", color: "#2f3033", fontWeight: "400" }}>Social activity</p>
+                <p style={{ marginTop: "10px", fontFamily: "Roboto", whiteSpace: "pre", fontSize: "14px", color: "#888c94", fontWeight: "600", display: "flex", alignItems: "center" }}>
                     <i style={{ fontSize: "18px" }} className="fa-solid fa-heart"></i>
                     <span> 0    </span>
                     <i style={{ fontSize: "18px" }} className="fa-solid fa-comment"></i>
                     {" 0  "}
                 </p>
 
-                <p style={{ margin: "25px 0px 0px 0px", fontFamily: "SctoGroteskA", fontSize: "14px", fontWeight: "600" }}>Status</p>
+                <p style={{ margin: "20px 0px 0px 0px", fontFamily: "SctoGroteskA", fontSize: "14px", fontWeight: "600" }}>Status</p>
                 <p style={{ marginTop: "5px", fontFamily: "SctoGroteskA", fontWeight: "600" }}>Complete</p>
 
                 <p style={{ margin: "25px 0px 0px 0px", fontFamily: "SctoGroteskA", fontSize: "14px", fontWeight: "600" }}>Payment method</p>
-                <div style={{ margin: "10px 0px 0px 0px", display: "flex", gap: "10px", alignItems: "center" }}>
+                <div style={{ margin: "0px 0px 0px 0px", display: "flex", gap: "10px", alignItems: "center" }}>
                     <img src={"../static/images/bank.png"} style={{ width: "40px" }}></img>
-                    <div style = {{fontFamily: "Roboto", fontWeight: "600"}}>
-                        <p style={{marginTop: "10px", margin: "0px"}}>BANK OF AMERICA, N.A.</p>
+                    <div style = {{fontFamily: "Roboto", fontWeight: "400", WebkitTextStroke: ".3px"}}>
+                        <p style={{margin: "0px", marginTop: "10px"}}>BANK OF AMERICA, N.A.</p>
                         <p style={{margin: "0"}}>Personal Checking</p>
-                        <p style={{fontSize: "12px", marginTop: "5px", fontWeight: "400"}}>Bank •• 2498</p>
+                        <p style={{fontSize: "12px", marginTop: "5px", fontWeight: "400", WebkitTextStroke: "0px"}}>Bank •• 2498</p>
                     </div>
                 </div>
 
-                <p style={{ margin: "16px 0px 0px 0px", fontFamily: "SctoGroteskA", fontSize: "14px", fontWeight: "600" }}>Transaction details</p>
-                <p style={{ marginTop: "0", display: "flex", alignItems: "center", fontFamily: "Roboto", fontWeight: "600" }}>January 18, 2024, 3:01 PM • <span className="private-icon" /></p>
+                <p style={{ margin: "10px 0px 0px 0px", fontFamily: "SctoGroteskA", fontSize: "14px", fontWeight: "600" }}>Transaction details</p>
+                <p style={{ margin: "10px 0px 0px 0px", display: "flex", alignItems: "center", fontFamily: "Roboto", fontWeight: "400", WebkitTextStroke: ".3px" }}>January 18, 2024, 3:01 PM • <span className="private-icon" /></p>
 
-                <p style={{ margin: "0", fontFamily: "SctoGroteskA", fontSize: "14px", fontWeight: "600" }}>Paid to</p>
-                <p style={{ marginTop: "0", fontFamily: "Roboto", fontWeight: "600" }}>@BruinBhangra</p>
+                <p style={{ margin: "20px 0px 0px 0px", fontFamily: "SctoGroteskA", fontSize: "14px", fontWeight: "600" }}>Paid to</p>
+                <p style={{ margin: "10px 0px 0px 0px", fontFamily: "Roboto", fontWeight: "400", WebkitTextStroke: ".3px" }}>@BruinBhangra</p>
 
-                <p style={{ margin: "0", fontFamily: "SctoGroteskA", fontSize: "14px", fontWeight: "600" }}>Type of transaction</p>
-                <p style={{ marginTop: "0", fontFamily: "Roboto", fontWeight: "600" }}>Payments between friends</p>
+                <p style={{ margin: "20px 0px 0px 0px", fontFamily: "SctoGroteskA", fontSize: "14px", fontWeight: "600" }}>Type of transaction</p>
+                <p style={{ margin: "10px 0px 0px 0px", fontFamily: "Roboto", fontWeight: "400", WebkitTextStroke: ".3px" }}>Payments between friends</p>
 
-                <p style={{ margin: "0", fontFamily: "SctoGroteskA", fontSize: "14px", fontWeight: "600" }}>Transaction ID</p>
-                <p style={{ marginTop: "0", fontFamily: "Roboto", fontWeight: "600" }}>9299488194949</p>
+                <p style={{ margin: "20px 0px 0px 0px", fontFamily: "SctoGroteskA", fontSize: "14px", fontWeight: "600" }}>Transaction ID</p>
+                <p style={{ margin: "10px 0px 0px 0px", fontFamily: "Roboto", fontWeight: "400", WebkitTextStroke: ".3px" }}>9299488194949</p>
 
-                <p style={{ color: "#0074de", fontFamily: "SctoGroteskA", fontWeight: "800" }}>Need Help?</p>
+                <p style={{ margin: "20px 0px 0px 0px", color: "#0074de", fontFamily: "Roboto", fontWeight: "800" }}>Need Help?</p>
 
                 <div style={{
                     height: "150px"
