@@ -1,5 +1,14 @@
 TODO List for PVenmo:
 
 Create the Payment Details page and get this to the T!!
-
 Use the BruinBhangra page for details.
+
+Payment Details is the most important to finish,
+so have that done first. Style it to look exactly
+like a transaction from Venmo.
+
+Then the main page can be handled.
+
+
+Progress as of 3/27 4:30AM,
+Finished everything up to Payment Details, next to align is Transaction Details.

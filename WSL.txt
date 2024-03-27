@@ -1,0 +1,8 @@
+Commands to setup WSL port bridge for Windows Environment/Stack
+
+
+hostname -I
+netsh interface portproxy add v4tov4 listenport=8000 listenaddress=0.0.0.0 connectport=8000 connectaddress=172.30.86.33
+netsh interface portproxy show v4tov4
+New-NetFirewallRule -DisplayName "WSL2 Port Bridge" -Direction Inbound -Action Allow -Protocol TCP -LocalPort 80,443,10000,3000,5000,8000
+

@@ -44,7 +44,7 @@ export function VenmoApp(props: {
     </Slide>;
 
     return <>
-    {come ? null : mainPage}
+    {come ? <div></div> : mainPage}
     {paymentSlide}
     </>;
 }

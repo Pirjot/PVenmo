@@ -26,7 +26,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     'b3676a7b-e831-4b6f-aa3f-bfd64d0ceb7f-00-3hsufpn3e405a.picard.replit.dev',
-    'localhost'
+    'localhost',
+    '*'
 ]
 
 # Application definition

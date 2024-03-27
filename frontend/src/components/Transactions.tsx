@@ -8,7 +8,6 @@ export function Transactions(props : {
     style={{
         display:"flex",
         flexDirection: "column",
-        border: "3px solid pink",
         width: "100%",
     }}>
         <Transaction />

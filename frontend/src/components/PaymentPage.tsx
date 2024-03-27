@@ -1,76 +1,127 @@
 import React from "react";
 
-export function PaymentPage(props : {
+export function PaymentPage(props: {
     children?: React.JSX.Element[],
     setCome: React.Dispatch<React.SetStateAction<boolean>>
 }) {
-    
+
+    const topHeight = "50px";
+    const spacerHeight = "50px";
+
     return <div style={{
-        height:"100%",
-        width:"100%",
-        backgroundColor: "aqua",
+        height: "100%",
+        width: "100%",
         overflowY: "scroll"
     }}>
-        <i 
-        style = {{
-            position: "fixed",
-            top: "10px",
-            left: "10px",
-            zIndex: "3"
-        }}
-        onClick={(evt) => props.setCome(false)}
-        className="fa-solid fa-chevron-left hoverClick" />
+        <i
+            style={{
+                position: "fixed",
+                top: "10px",
+                left: "20px",
+                zIndex: "1",
+                fontSize: "20px",
+                WebkitTextStroke: "2px",
+                color: "#888c94"
+            }}
+            onClick={(evt) => props.setCome(false)}
+            className="fa-solid fa-chevron-left hoverClick" />
 
-        <div style ={{
-            position: "sticky",
+        <div style={{
+            position: "fixed",
             top: "0px",
             left: "0px",
             width: "100%",
-            height: "50px",
+            height: topHeight,
             backgroundColor: "white",
             paddingTop: "20px",
-            zIndex: "2"
+            display: "flex",
+            justifyContent: "center"
         }}>
-            <p style ={{
-                textAlign: "center"
-            }}>Payment Details</p>
+            <p style={{
+                position: "fixed",
+                fontFamily: "Roboto",
+                color: "#55585e",
+                fontWeight: "600",
+                margin: "0"
+            }}>Payment details</p>
         </div>
 
-        <div
-        style={{
-            width: "200px",
-            height: "200px",
-            backgroundColor: "purple",
-            margin: "auto"
-        }}
-        >Contents</div>
-
-        <p>Social Activity</p>
-        <p>Icons</p>
-
-        <p style={{marginBottom: "0"}}>Status</p>
-        <p style={{marginTop: "0"}}>Complete</p>
-
-        <p>Payment Method</p>
-        <div>Payment Box</div>
-
-        <p>Transaction Details</p>
-        <p>Date</p>
-
-        <p>Paid to</p>
-        <p>PersonPaid</p>
-
-        <p>Type of Transaction</p>
-        <p>Payments between friends</p>
-
-        <p>Transaction ID</p>
-        <p>9299488194949</p>
-        
-        <p>Need Help?</p>
-
         <div style={{
-            height: "200px"
-        }}></div>
+            display: "flex",
+            flexDirection: "column",
+            width: "100%",
+        }}>
+
+            <div style={{ height: spacerHeight }}></div>
+
+            <div
+                style={{
+                    width: "250px",
+                    height: "150px",
+                    padding: "30px 0px 10px 0px",
+                    margin: "auto",
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    justifyContent: "center"
+                }}
+            >
+                <img
+                    src={"../static/images/default_profile.png"}
+                    style={{
+                        width: "50px",
+                        height: "50px",
+                        objectFit: "cover",
+                        borderRadius: "50%"
+                    }} />
+                <p style={{ margin: "5px", fontSize: "20px", fontFamily: "Athletics" }}>Bruin Bhangra</p>
+                <p style={{ margin: "0", fontFamily: "SctoGroteskA" }}>"Pirjot pre-sale"</p>
+                <p style={{ margin: "5px", fontSize: "20px", fontFamily: "Athletics", color: "#c72830" }}>- $8</p>
+            </div>
+
+            <div style={{
+                paddingLeft: "10px"
+            }}>
+                <p style={{ margin: "0", fontFamily: "SctoGroteskA", fontSize: "14px", color: "#2f3033" }}>Social activity</p>
+                <p style={{ marginTop: "5px", fontFamily: "Roboto", whiteSpace: "pre", fontSize: "14px", color: "#888c94", fontWeight: "600" }}>
+                    <i style={{ fontSize: "18px" }} className="fa-solid fa-heart"></i>
+                    <span> 0    </span>
+                    <i style={{ fontSize: "18px" }} className="fa-solid fa-comment"></i>
+                    {" 0  "}
+                </p>
+
+                <p style={{ margin: "25px 0px 0px 0px", fontFamily: "SctoGroteskA", fontSize: "14px", fontWeight: "600" }}>Status</p>
+                <p style={{ marginTop: "5px", fontFamily: "SctoGroteskA", fontWeight: "600" }}>Complete</p>
+
+                <p style={{ margin: "25px 0px 0px 0px", fontFamily: "SctoGroteskA", fontSize: "14px", fontWeight: "600" }}>Payment method</p>
+                <div style={{ margin: "10px 0px 0px 0px", display: "flex", gap: "10px", alignItems: "center" }}>
+                    <img src={"../static/images/bank.png"} style={{ width: "40px" }}></img>
+                    <div style = {{fontFamily: "Roboto", fontWeight: "600"}}>
+                        <p style={{marginTop: "10px", margin: "0px"}}>BANK OF AMERICA, N.A.</p>
+                        <p style={{margin: "0"}}>Personal Checking</p>
+                        <p style={{fontSize: "12px", marginTop: "5px", fontWeight: "400"}}>Bank •• 2498</p>
+                    </div>
+                </div>
+
+                <p style={{ margin: "16px 0px 0px 0px", fontFamily: "SctoGroteskA", fontSize: "14px", fontWeight: "600" }}>Transaction details</p>
+                <p style={{ marginTop: "0", display: "flex", alignItems: "center", fontFamily: "Roboto", fontWeight: "600" }}>January 18, 2024, 3:01 PM • <span className="private-icon" /></p>
+
+                <p style={{ margin: "0", fontFamily: "SctoGroteskA", fontSize: "14px", fontWeight: "600" }}>Paid to</p>
+                <p style={{ marginTop: "0", fontFamily: "Roboto", fontWeight: "600" }}>@BruinBhangra</p>
+
+                <p style={{ margin: "0", fontFamily: "SctoGroteskA", fontSize: "14px", fontWeight: "600" }}>Type of transaction</p>
+                <p style={{ marginTop: "0", fontFamily: "Roboto", fontWeight: "600" }}>Payments between friends</p>
+
+                <p style={{ margin: "0", fontFamily: "SctoGroteskA", fontSize: "14px", fontWeight: "600" }}>Transaction ID</p>
+                <p style={{ marginTop: "0", fontFamily: "Roboto", fontWeight: "600" }}>9299488194949</p>
+
+                <p style={{ color: "#0074de", fontFamily: "SctoGroteskA", fontWeight: "800" }}>Need Help?</p>
+
+                <div style={{
+                    height: "150px"
+                }}></div>
+            </div>
+        </div>
     </div>;
 
 }
