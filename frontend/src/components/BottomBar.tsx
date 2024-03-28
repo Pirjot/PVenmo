@@ -4,36 +4,16 @@ export function BottomBar(props : {
     children?: React.JSX.Element[]
 }) {
 
-    let height = "100px";
-
-    let item = <div
-    style = {{
-        whiteSpace: "nowrap",
-        height: height,
-        minWidth: "2000px",
-        border: "3px solid black"
-    }}
-    >
-        500
-    </div>
-
-    return <div
-    className="container"
+    return <img
+    src={"../static/images/bottom.png"}
     style={{
         position: "fixed",
-        display: "flex",
-        padding: "0px",
-        height: height,
-        border: "3px solid black",
-        alignItems: "center",
         width: "100%",
-        gridGap: "20px",
-        overflowX: "scroll",
         bottom: "0",
-        backgroundColor: "white"
+        left: "0",
+        objectFit: "scale-down",
+        filter: "drop-shadow(0px 0px 5px gray)"
     }}
     >
-        {...(props.children || [])}
-        {item}
-    </div>;
+    </img>;
 }

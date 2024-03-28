@@ -9,6 +9,4 @@ like a transaction from Venmo.
 
 Then the main page can be handled.
 
-
-Progress as of 3/27 4:30AM,
-Finished everything up to Payment Details, next to align is Transaction Details.
+TODO: Change the bottom spacing on the PaymentPage and change Need Help

@@ -207,3 +207,19 @@ body {
     display: inline-block;
     background-size: cover;
 }
+
+.friends-icon {
+    background: url('../images/Friends.png');
+    height: 16px;
+    width: 20px;
+    display: inline-block;
+    background-size: cover;
+}
+
+.threedot-icon {
+    background: url('../images/3dot.png');
+    height: 16px;
+    width: 24px;
+    display: inline-block;
+    background-size: cover;
+}

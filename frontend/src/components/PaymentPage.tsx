@@ -18,7 +18,7 @@ export function PaymentPage(props: {
                 position: "fixed",
                 top: "10px",
                 left: "20px",
-                zIndex: "1",
+                zIndex: "2",
                 fontSize: "20px",
                 WebkitTextStroke: "2px",
                 color: "#888c94"
@@ -115,10 +115,10 @@ export function PaymentPage(props: {
                 <p style={{ margin: "20px 0px 0px 0px", fontFamily: "SctoGroteskA", fontSize: "14px", fontWeight: "600" }}>Transaction ID</p>
                 <p style={{ margin: "10px 0px 0px 0px", fontFamily: "Roboto", fontWeight: "400", WebkitTextStroke: ".3px" }}>9299488194949</p>
 
-                <p style={{ margin: "20px 0px 0px 0px", color: "#0074de", fontFamily: "Roboto", fontWeight: "800" }}>Need Help?</p>
+                <p style={{ margin: "20px 0px 0px 0px", color: "#0074de", fontFamily: "Roboto", fontWeight: "800" }}>Need help?</p>
 
                 <div style={{
-                    height: "150px"
+                    height: "75px"
                 }}></div>
             </div>
         </div>

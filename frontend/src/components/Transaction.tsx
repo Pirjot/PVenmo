@@ -1,54 +1,60 @@
 import React from "react";
+import { genIcon } from "../helpers/genIcon";
 
 export function Transaction(props : {
     children?: React.JSX.Element[]
 }) {
 
-    let topPortion = <div 
+    let icon = genIcon({
+        height: "50px",
+        alias: "KG"
+    });
+
+    return <div 
     style={{
         display:"flex",
         flexDirection: "row",
-        border: "3px solid black",
         width: "100%",
+        gap: "10px"
     }}>
-        <div
-        style = {{
-            height: "50px",
-            width: "50px",
-            margin: "10px",
-            backgroundColor: "gray"
-        }}
-        />
+        {icon}
 
         <div
         style={{
-            width:"100%"
+            width:"100%",
+            fontFamily: "SctoGroteskA"
         }}
         >
             <div>
                 <p style={{
-                    marginBottom: "0"
-                }}>Somebody paid Somebody</p>
+                    margin: "0",
+                    marginTop: "5px"
+                }}><span style={{fontWeight: "600"}}>Matthew Espinoza</span> paid <span style={{fontWeight: "600"}}>Joy del Rosario</span></p>
                 <p style={{
-                    marginTop: "0"
-                }}>49m <i style={{color: "gray"}} className="fa-solid fa-user-group"></i></p>
+                    margin: "0",
+                    display: "flex",
+                    alignItems: "center",
+                    fontSize: "14px",
+                    color: "gray",
+                    fontWeight: "600"
+                }}>2d <span className="friends-icon" /></p>
             </div>
-            <p>Description</p>
+            <p style={{margin: "10px 0px 20px 0px"}}>Description</p>
             <div
             style = {{
                 display: "flex",
-                flexDirection: "row",
                 gap: "10px",
-                marginBottom: "20px"
+                marginBottom: "20px",
+                paddingRight: "10px",
+                alignItems: "end"
             }}
             >
-                <i className="bi bi-heart" />
-                <i className="bi bi-chat-square" />
-                <i className="bi bi-three-dots"></i>
+                <i style={{color: "gray", marginRight: "30px"}} className="bi bi-heart" />
+                <i style={{color: "gray"}} className="bi bi-chat-square" />
+                <div style={{width: "100%", display: "flex", justifyContent: "right"}}><span className="threedot-icon" /></div>
             </div>
+
+            <hr style={{opacity:"50%"}} />
         </div>
     </div>;
-
-    
-    return <>{...[topPortion]}</>;
 }

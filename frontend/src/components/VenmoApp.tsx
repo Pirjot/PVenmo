@@ -19,7 +19,12 @@ export function VenmoApp(props: {
 
     let button = <button onClick={slide}>Hello</button>;
 
-    let mainPage = <div>
+    let mainPage = <div style={{
+        height:"100%",
+        zIndex:"1",
+        width:"100%",
+        overflowX: "clip"
+    }}>
         <TopBar />
         <Transactions />
         {button}
@@ -37,7 +42,7 @@ export function VenmoApp(props: {
     direction="left" in={come}>
         <div style ={{
             height:"100%",
-            zIndex:"40",
+            zIndex:"1",
             width:"100%",
             overflowX: "clip"
         }}><PaymentPage setCome={setCome} /></div>
