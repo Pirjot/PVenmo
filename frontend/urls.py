@@ -7,5 +7,7 @@ urlpatterns = [
     path('', indexView),
     # path('api/route1', route1),
     path('google', google),
-    path('login', login)
+    path('login', login),
+    path('upload', upload),
+    path('download', download)
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

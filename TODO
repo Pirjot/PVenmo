@@ -1,12 +1,33 @@
 TODO List for PVenmo:
 
-Create the Payment Details page and get this to the T!!
-Use the BruinBhangra page for details.
+We now have a convincing view setup for everything and need
+to install our database hooks. Starting from simplest to largest
+units:
 
-Payment Details is the most important to finish,
-so have that done first. Style it to look exactly
-like a transaction from Venmo.
+Transaction
+Transactions
+PaymentPage
 
-Then the main page can be handled.
+Extract the programmable portions into data that can
+be inserted from a MongoDB document, where that document
+can be something like:
 
-TODO: Change the bottom spacing on the PaymentPage and change Need Help
+{topbar, transactions: []}
+transaction = {
+    TRANSACTION FIELDS
+}
+
+Most importantly: we need a way to be able to insert new
+profile images (hopefully without manual base64 conversion?).
+
+Update as of 3/28:
+Finished Upload schematics for images and getting images all available
+under VenmoApp. This should be tucked away under a modal with the final
+added change of being able to upload a document for the schematics of
+the whole page. Also, to upload that doc/update it, we should enforce:
+1. The structure is equivalent to some default structure through checking
+2. There are minimums that are satisfied (min on the top bar, or #
+of transactions. Each transaction will have the information of the payment
+so there is no issue there.)
+
+Ensure that documents are labeled with the credentials of the uploader.

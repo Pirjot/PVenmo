@@ -1,6 +1,8 @@
-from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse, FileResponse, HttpResponseBadRequest
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render
+from .models import *
+
 import json
 
 def http_method_list(methods):
@@ -41,7 +43,6 @@ def google(request, **kwargs):
 
     # Create in Database all default values here
     # from pymongo import MongoClient
-    # connection_string = "mongodb+srv://pvenmo:H9Om9My78Rrcq7PP@pvenmo.3v7rs5d.mongodb.net/?retryWrites=true&w=majority&appName=PVenmo"
 
     # client = MongoClient(connection_string)
     # mongo_db = client['sample_medicines']
@@ -60,3 +61,29 @@ def google(request, **kwargs):
     response = HttpResponseRedirect("/")  
     response.set_cookie('clientid', client_id) 
     return response
+
+
+@csrf_exempt
+@http_method_list(["POST"])
+def upload(request, **kwargs):
+    status = True
+
+    if request.FILES.get('file') and request.POST.get('filename'):
+        id = put_file(request.FILES.get('file'), filename=request.POST.get('filename'))
+        
+        if not id:
+            status = False
+    else:
+        status = False
+
+    return JsonResponse({'status': status})
+
+@csrf_exempt
+@http_method_list(["POST"])
+def download(request, **kwargs):
+    file = request.POST.get('filename') and get_grid_file(request.POST.get('filename'))
+
+    if not file:
+        return HttpResponseBadRequest()
+
+    return FileResponse(file)
