@@ -1,126 +1,114 @@
-import React from "react";
+import React, { useEffect } from "react";
 
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { TopBar } from "./TopBar";
 import { BottomBar } from "./BottomBar";
 import { Transactions } from "./Transactions";
 import { PaymentPage } from "./PaymentPage";
 import { Slide } from "@mui/material";
-
-const resizeImage = async (file: MediaSource, maxWidth: number) => {
-    return new Promise<File>((resolve, reject) => {
-        const image = new Image();
-        image.src = URL.createObjectURL(file);
-
-        image.onload = () => {
-            let width = image.width;
-            let height = image.height;
-
-            if (width > maxWidth) {
-                const aspectRatio = width / height;
-                width = maxWidth;
-                height = width / aspectRatio;
-            }
-
-            const canvas = document.createElement('canvas');
-            canvas.width = width;
-            canvas.height = height;
-
-            const ctx = canvas.getContext('2d');
-            ctx.drawImage(image, 0, 0, width, height);
-
-            canvas.toBlob((blob) => {
-                resolve(new File([blob], "file", { type: 'image/jpeg' }));
-            }, 'image/jpeg', 0.7); // Compression quality (0.7 = 70%)
-        };
-
-        image.onerror = (error) => {
-            reject(error);
-        };
-    });
-};
-
-export function FileButton(props: {}) {
-    const [file, setFile] = useState(null);
-    const [name, setName] = useState("");
-
-    const handleFileChange: React.ChangeEventHandler<HTMLInputElement> = (evt) => {
-        setFile(evt.target.files[0]);
-    };
-
-    const handleNameChange: React.ChangeEventHandler<HTMLInputElement> = (evt) => {
-        setName(evt.target.value);
-    };
-
-    const handleUpload = async () => {
-        const formData = new FormData();
-        const resized = await resizeImage(file, 500);
-        formData.append('file', resized);
-        formData.append('filename', name);
-
-        try {
-            let response = await fetch('/upload', {
-                method: 'POST',
-                body: formData,
-            });
-            alert('File uploaded successfully');
-        } catch (error) {
-            console.error('Error uploading file:', error);
-            alert('Error uploading file');
-        }
-    };
-
-    return <div>
-        <input type="file" onChange={handleFileChange} />
-        <input type="text" onChange={handleNameChange} />
-        <button onClick={handleUpload}>Upload</button>
-    </div>;
-}
-
-export function GetFileButton(props: {}) {
-    const [name, setName] = useState("");
-    const [imageUrl, setImageUrl] = useState('');
-
-    const handleNameChange: React.ChangeEventHandler<HTMLInputElement> = (evt) => {
-        setName(evt.target.value);
-    };
-
-    const handleGet = async () => {
-        const formData = new FormData();
-        formData.append('filename', name);
-
-        try {
-            let response = await fetch('/download', {
-                method: 'POST',
-                body: formData,
-            });
-            alert('File uploaded successfully');
-            if (!response.ok) {
-                return alert("Didn't find file.")
-            }
-            let blob = await response.blob();
-            setImageUrl(URL.createObjectURL(blob));
-        } catch (error) {
-            console.error('Error getting file:', error);
-        }
-    };
-
-    return <div>
-        <input type="text" onChange={handleNameChange} />
-        <button onClick={handleGet}>Get</button>
-        {imageUrl && <img src={imageUrl} alt="Uploaded Image" />}
-    </div>;
-}
+import { CONFIG } from "./Config";
+import { useFetch } from "../hooks/useFetch";
+import { genIcon } from "../helpers/genIcon";
 
 export function VenmoApp(props: {}) {
     // States
-    const [come, setCome] = useState(false);
+    const [slide, setSlide] = useState(false);
+    const [config, setConfig] = useState(CONFIG);
+    const [selected, setSelected] = useState(0);
+    const [icons, setIcons] = useState([]);
+    const [topIcons, setTopIcons] = useState([]);
+    const [configdata, loading, err] = useFetch("/getconfig");
 
-    function slide() {
-        setCome(!come);
+    const populateDefaultIcons = (objects: {
+        alias: string,
+        name?: string
+    }[], showNames: boolean, setArray: React.Dispatch<React.SetStateAction<any[]>>) => {
+        // Populate the config with icon keys for all aliases provided
+        let icons: React.JSX.Element[] = [];
+        for (const obj of objects) {
+            icons.push(genIcon({
+                height: "50px", 
+                alias: obj['alias'],
+                name: showNames ? obj['name'] : undefined
+            }));
+        }
+        setArray(icons);
     }
 
-    let button = <button onClick={slide}>Hello</button>;
+    /**
+     * Build and return all icons with or without names
+     * provided to display.
+     * 
+     * Does so by iterating through all objects and fetching
+     * images immediately that are needed then mapping them
+     * back to their original objects to create the icon
+     * elements.
+     */
+    const populateImageIcons = async (objects: {
+        image?: string,
+        alias: string,
+        name?: string,
+        useimage: string
+    }[], showNames: boolean, setArray: React.Dispatch<React.SetStateAction<any[]>>) => {
+        let icons: React.JSX.Element[] = [];
+        let promises: [Promise<any>, string][] = [];
+        let files: string[] = [];
+        let imageToURL: Record<string, string> = {}
+
+        for (const obj of objects) {
+            if (obj['useimage'] == '1') {
+                if (!(obj['image'] in files)) {
+                    const formData = new FormData();
+                    formData.append('filename', obj['image']);
+                    let request = fetch('/download', {
+                        method: 'POST',
+                        body: formData,
+                    });
+                    promises.push([request, obj['image']]);
+                    files.push(obj['image']);
+                }
+            }
+        }
+        let img = "";
+        const responses = await Promise.allSettled(promises.map((i) => i[0]));
+        const nameToResponse: Record<string, any> = {};
+
+        for (let i = 0; i < promises.length; i++) {
+            nameToResponse[promises[i][1]] = responses[i].status == "fulfilled" ? 
+            (responses[i] as any).value : "";
+        }
+
+        for (const obj of objects) {
+            let img = "";
+            if (obj['useimage'] == '1' && obj['image'] in nameToResponse) {
+                const response = nameToResponse[obj['image']];
+                let blob = await response.blob();
+                img = URL.createObjectURL(blob);
+            }
+
+            icons.push(genIcon({
+                height: "50px",
+                name: showNames ? obj['name'] : undefined,
+                alias: obj['alias'],
+                img: img
+            }));
+        }
+
+        setArray(icons);
+    };
+
+    useEffect(() => {
+        if (!loading && !err) {
+            setConfig(configdata);
+        }
+    }, [loading]);
+
+    useEffect(() => {
+        populateDefaultIcons(config['transactions'], false, setIcons);
+        populateDefaultIcons(config['topIcons'], true, setTopIcons);
+        populateImageIcons(config['transactions'], false, setIcons);
+        populateImageIcons(config["topIcons"], true, setTopIcons);
+    }, [config]);
 
     let mainPage = <div style={{
         height:"100%",
@@ -128,13 +116,10 @@ export function VenmoApp(props: {}) {
         width:"100%",
         overflowX: "clip"
     }}>
-        <TopBar />
-        <Transactions />
-        {button}
-        <FileButton />
-        <GetFileButton />
+        <TopBar topIcons={topIcons}/>
+        <Transactions transactions={config['transactions']} icons={icons} setSelected={setSelected} setSlide={setSlide}/>
         <div style={{
-            height: "500px" // Change this back to 200px
+            height: "200px"
         }}></div>
         <BottomBar />
     </div>;
@@ -144,17 +129,18 @@ export function VenmoApp(props: {}) {
         top: "0",
         left: "0",
     }}
-    direction="left" in={come}>
+    direction="left" in={slide}>
         <div style ={{
             height:"100%",
             zIndex:"1",
             width:"100%",
-            overflowX: "clip"
-        }}><PaymentPage setCome={setCome} /></div>
+            overflowX: "clip",
+            backgroundColor:"white"
+        }}><PaymentPage setCome={setSlide} transaction={config['transactions'][selected]} icon={icons[selected]}/></div>
     </Slide>;
 
     return <>
-    {come ? <div></div> : mainPage}
+    {slide ? <div></div> : mainPage}
     {paymentSlide}
     </>;
 }

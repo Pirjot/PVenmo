@@ -1,0 +1,72 @@
+DEFAULT_CONFIG = {
+    "topIcons": [
+        {"name": "Nathaniel Fish", "alias": "NF", "useimage": "0"},
+        {"name": "Mihir Srivastava", "alias": "MS", "useimage": "1", "image": "mihir"},
+        {"name": "Joe Bruin", "alias": "JB", "useimage": "0"},
+        {"name": "Jack Black", "alias": "JB", "useimage": "0"},
+        {"name": "Gene Block", "alias": "GB", "useimage": "0"},
+        {"name": "Donald Trump", "alias": "DT", "useimage": "0"},
+    ],
+    "transactions": [
+        {
+            "useimage": "1",
+            "image": "riversidebhangra",
+            "name": "Tanishaa Singh",
+            "tag": "@riversidebhangra",
+            "alias": "TS",
+            "payer": "You",
+            "description": "Sidhu - 1 Ticket",
+            "passedtime": "30m",
+            "amount": "7",
+            "date": "March 25, 2024, 3:21 PM",
+            "type": "Payments between friends",
+            "transactionid": "4008402878509301361",
+            "banknumber": "9418"
+        },
+        {
+            "useimage": "1",
+            "image": "bhangra",
+            "name": "Bruin Bhangra",
+            "tag": "@BruinBhangra",
+            "alias": "BB",
+            "payer": "You",
+            "description": "pre-sale",
+            "passedtime": "3d",
+            "amount": "8",
+            "date": "March 25, 2024, 3:21 PM",
+            "type": "Payments between friends",
+            "transactionid": "4007265878509301361",
+            "banknumber": "9418"
+        },
+        {
+            "useimage": "1",
+            "image": "mihir",
+            "name": "Mihir Srivastava",
+            "tag": "@srivastmi",
+            "alias": "MS",
+            "payer": "You",
+            "description": "investments",
+            "passedtime": "5d",
+            "amount": "1000000",
+            "date": "February 20, 2024, 3:21 PM",
+            "type": "Payments between friends",
+            "transactionid": "4007265878509301361",
+            "banknumber": "9418"
+        },
+        {
+            "useimage": "0",
+            "image": "",
+            "name": "Nathaniel Fish",
+            "tag": "@Nathaniel-Fish-1",
+            "alias": "MS",
+            "payer": "Mihir Srivastava",
+            "description": "roommate bills",
+            "passedtime": "7d",
+            "amount": "",
+            "date": "February 20, 2024, 3:21 PM",
+            "type": "Payments between friends",
+            "transactionid": "4007265878509301361",
+            "banknumber": "9418"
+        },
+    ]
+}

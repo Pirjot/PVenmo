@@ -1,9 +1,9 @@
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse, FileResponse, HttpResponseBadRequest
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render
-from .models import *
-
 import json
+from .models import *
+from .config import DEFAULT_CONFIG
 
 def http_method_list(methods):
     def http_methods_decorator(func):
@@ -30,8 +30,11 @@ def indexView(request, *args, **kwargs):
 def login(request, **kwargs):
     req = json.loads(request.body)
     
-    client_id = req.get('credential', False)
-
+    client_id = req.get('credential')
+    if not client_id:
+        return HttpResponseBadRequest()
+    
+    create_config(client_id)
     response = HttpResponseRedirect("/")  
     client_id and response.set_cookie('clientid', client_id)
     return response
@@ -41,23 +44,6 @@ def login(request, **kwargs):
 def google(request, **kwargs):
     client_id = request.POST['credential']
 
-    # Create in Database all default values here
-    # from pymongo import MongoClient
-
-    # client = MongoClient(connection_string)
-    # mongo_db = client['sample_medicines']
-    # coll = mongo_db["medicinedetails"]
-
-    # medicine_1 = {
-    #     "medicine_id": "RR000123456",
-    #     "common_name" : "Paracetamol",
-    #     "scientific_name" : "",
-    #     "available" : "Y",
-    #     "category": "fever"
-    # }
-
-    # coll.insert_many([medicine_1])
-
     response = HttpResponseRedirect("/")  
     response.set_cookie('clientid', client_id) 
     return response
@@ -66,17 +52,15 @@ def google(request, **kwargs):
 @csrf_exempt
 @http_method_list(["POST"])
 def upload(request, **kwargs):
-    status = True
-
     if request.FILES.get('file') and request.POST.get('filename'):
         id = put_file(request.FILES.get('file'), filename=request.POST.get('filename'))
         
         if not id:
-            status = False
+            return HttpResponseBadRequest()
     else:
-        status = False
+        return HttpResponseBadRequest()
 
-    return JsonResponse({'status': status})
+    return JsonResponse({"status": "success"})
 
 @csrf_exempt
 @http_method_list(["POST"])
@@ -87,3 +71,32 @@ def download(request, **kwargs):
         return HttpResponseBadRequest()
 
     return FileResponse(file)
+
+@http_method_list(["GET"])
+def getconfig(request, **kwargs):
+    clientid = request.COOKIES.get('clientid')
+    config = get_config(clientid)
+
+    if not config:
+        return HttpResponseBadRequest()
+
+    return JsonResponse(config)
+
+@csrf_exempt
+@http_method_list(["POST"])
+def postconfig(request, **kwargs):
+    # Validate the config here
+    if not request.COOKIES.get('clientid'):
+        return HttpResponseBadRequest()
+    
+    config = {}
+    try:
+        config = json.loads(request.POST.get('config'))
+    except:
+        return HttpResponseBadRequest()
+
+    config["clientid"] = request.COOKIES.get('clientid')
+
+    update_config(config)
+
+    return HttpResponseRedirect("/")

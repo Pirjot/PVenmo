@@ -9,5 +9,7 @@ urlpatterns = [
     path('google', google),
     path('login', login),
     path('upload', upload),
-    path('download', download)
+    path('download', download),
+    path('getconfig', getconfig),
+    path('postconfig', postconfig)
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

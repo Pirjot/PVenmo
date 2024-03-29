@@ -1,10 +1,15 @@
 import React from "react";
+import { CONFIG } from "./Config";
+import { Image } from "./Image";
+
 
 export function PaymentPage(props: {
     children?: React.JSX.Element[],
-    setCome: React.Dispatch<React.SetStateAction<boolean>>
+    setCome: React.Dispatch<React.SetStateAction<boolean>>,
+    transaction: typeof CONFIG['transactions'][0],
+    icon: React.JSX.Element
 }) {
-
+    const trans = props.transaction;
     const topHeight = "50px";
     const spacerHeight = "50px";
 
@@ -66,17 +71,10 @@ export function PaymentPage(props: {
                     justifyContent: "center"
                 }}
             >
-                <img
-                    src={"../static/images/default_profile.png"}
-                    style={{
-                        width: "50px",
-                        height: "50px",
-                        objectFit: "cover",
-                        borderRadius: "50%"
-                    }} />
-                <p style={{ margin: "5px", fontSize: "20px", fontFamily: "Athletics", fontWeight: "800" }}>Bruin Bhangra</p>
-                <p style={{ margin: "0", fontFamily: "SctoGroteskA" }}>"Pirjot pre-sale"</p>
-                <p style={{ margin: "5px", fontSize: "24px", fontFamily: "Athletics", color: "#c72830" }}>- $8</p>
+                {props.icon}
+                <p style={{ margin: "5px", fontSize: "20px", fontFamily: "Athletics", fontWeight: "800" }}>{trans["name"]}</p>
+                <p style={{ margin: "0", fontFamily: "SctoGroteskA" }}>"<span>{trans['description']}</span>"</p>
+                {trans["amount"] ? <p style={{ margin: "5px", fontSize: "24px", fontFamily: "Athletics", color: "#c72830" }}>- ${trans["amount"]}</p> : <></>}
             </div>
 
             <div style={{
@@ -95,25 +93,25 @@ export function PaymentPage(props: {
 
                 <p style={{ margin: "25px 0px 0px 0px", fontFamily: "SctoGroteskA", fontSize: "14px", fontWeight: "600" }}>Payment method</p>
                 <div style={{ margin: "0px 0px 0px 0px", display: "flex", gap: "10px", alignItems: "center" }}>
-                    <img src={"../static/images/bank.png"} style={{ width: "40px" }}></img>
+                    <Image src={"../static/images/bank.png"} style={{ width: "40px" }} />
                     <div style = {{fontFamily: "Roboto", fontWeight: "400", WebkitTextStroke: ".3px"}}>
                         <p style={{margin: "0px", marginTop: "10px"}}>BANK OF AMERICA, N.A.</p>
                         <p style={{margin: "0"}}>Personal Checking</p>
-                        <p style={{fontSize: "12px", marginTop: "5px", fontWeight: "400", WebkitTextStroke: "0px"}}>Bank •• 2498</p>
+                        <p style={{fontSize: "12px", marginTop: "5px", fontWeight: "400", WebkitTextStroke: "0px"}}>Bank •• {trans["banknumber"]}</p>
                     </div>
                 </div>
 
                 <p style={{ margin: "10px 0px 0px 0px", fontFamily: "SctoGroteskA", fontSize: "14px", fontWeight: "600" }}>Transaction details</p>
-                <p style={{ margin: "10px 0px 0px 0px", display: "flex", alignItems: "center", fontFamily: "Roboto", fontWeight: "400", WebkitTextStroke: ".3px" }}>January 18, 2024, 3:01 PM • <span className="private-icon" /></p>
+                <p style={{ margin: "10px 0px 0px 0px", display: "flex", alignItems: "center", fontFamily: "Roboto", fontWeight: "400", WebkitTextStroke: ".3px" }}>{trans["date"] + " • "}<span className="private-icon" /></p>
 
                 <p style={{ margin: "20px 0px 0px 0px", fontFamily: "SctoGroteskA", fontSize: "14px", fontWeight: "600" }}>Paid to</p>
-                <p style={{ margin: "10px 0px 0px 0px", fontFamily: "Roboto", fontWeight: "400", WebkitTextStroke: ".3px" }}>@BruinBhangra</p>
+                <p style={{ margin: "10px 0px 0px 0px", fontFamily: "Roboto", fontWeight: "400", WebkitTextStroke: ".3px" }}>{trans["tag"]}</p>
 
                 <p style={{ margin: "20px 0px 0px 0px", fontFamily: "SctoGroteskA", fontSize: "14px", fontWeight: "600" }}>Type of transaction</p>
-                <p style={{ margin: "10px 0px 0px 0px", fontFamily: "Roboto", fontWeight: "400", WebkitTextStroke: ".3px" }}>Payments between friends</p>
+                <p style={{ margin: "10px 0px 0px 0px", fontFamily: "Roboto", fontWeight: "400", WebkitTextStroke: ".3px" }}>{trans["type"]}</p>
 
                 <p style={{ margin: "20px 0px 0px 0px", fontFamily: "SctoGroteskA", fontSize: "14px", fontWeight: "600" }}>Transaction ID</p>
-                <p style={{ margin: "10px 0px 0px 0px", fontFamily: "Roboto", fontWeight: "400", WebkitTextStroke: ".3px" }}>9299488194949</p>
+                <p style={{ margin: "10px 0px 0px 0px", fontFamily: "Roboto", fontWeight: "400", WebkitTextStroke: ".3px" }}>{trans["transactionid"]}</p>
 
                 <p style={{ margin: "20px 0px 0px 0px", color: "#0074de", fontFamily: "Roboto", fontWeight: "800" }}>Need help?</p>
 

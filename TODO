@@ -31,3 +31,7 @@ of transactions. Each transaction will have the information of the payment
 so there is no issue there.)
 
 Ensure that documents are labeled with the credentials of the uploader.
+
+Quick TODO:
+Be able to update the config
+Have default icons for the topbar
