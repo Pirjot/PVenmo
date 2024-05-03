@@ -67,12 +67,16 @@ def get_grid_file(filename):
 
 # App specific methods
 def get_config(clientid):
+    print(f'Client id {clientid}')
+    
     config = None
     for obj in find_doc({"clientid": clientid or ""}):
         config = obj
         del config["clientid"]
         del config["_id"]
+        break
     
+    print(f'Got config ${config or False}')
     return config or False
 
 def create_config(client_id):
@@ -82,4 +86,6 @@ def create_config(client_id):
     insert_doc([new_config])
 
 def update_config(config):
+    print("Updating config")
+    print(config)
     print(update_doc({"clientid": config["clientid"]}, {"$set": config}))

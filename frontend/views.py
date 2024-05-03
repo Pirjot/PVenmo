@@ -34,7 +34,8 @@ def login(request, **kwargs):
     if not client_id:
         return HttpResponseBadRequest()
     
-    create_config(client_id)
+    if not get_config(client_id):
+        create_config(client_id)
     response = HttpResponseRedirect("/")  
     client_id and response.set_cookie('clientid', client_id)
     return response
